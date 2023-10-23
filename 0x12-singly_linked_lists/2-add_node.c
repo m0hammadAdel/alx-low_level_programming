@@ -3,16 +3,16 @@
 #include "lists.h"
 
 /**
- * add_node - adds new node to the given list
- * @head: pointer to the head of the list
- * @str: text to copy for the new node
+ * add_node - adds a new node at the beginning of a linked list
+ * @head: double pointer to the list_t list
+ * @str: new string to add in the node
  *
- * Return: the head of the new element, or NULL if failed
+ * Return: the address of the new element, or NULL if it fails
  */
 list_t *add_node(list_t **head, const char *str)
 {
 	list_t *new;
-	unsigned int len;
+	unsigned int len = 0;
 
 	while (str[len])
 		len++;
@@ -21,10 +21,10 @@ list_t *add_node(list_t **head, const char *str)
 	if (!new)
 		return (NULL);
 
-	new->str = strdub(str);
+	new->str = strdup(str);
 	new->len = len;
-	new->next = *head;
+	new->next = (*head);
 	(*head) = new;
 
-	return (head);
+	return (*head);
 }
